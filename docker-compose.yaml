@@ -1,0 +1,31 @@
+version: '3.3'
+services: 
+  frontend:
+    container_name: demo-todo-frontend 
+    build: ./frontend
+    volumes: 
+    - ./frontend:/frontend
+    ports: 
+      - 8000:8000
+    links:
+      - backend
+    environment:
+      - PORT=8000
+      
+  backend:
+    container_name: demo-todo-backend 
+    build: ./backend
+    volumes: 
+    - ./backend:/backend
+    ports: 
+      - 8001:8001
+    links:
+      - mongo
+     
+  mongo:
+    container_name: demo-todo-mongo
+    image: mongo:4.4
+    ports: 
+      - 27017:27017
+    volumes:
+      - .pv/auth/db:/data/db
