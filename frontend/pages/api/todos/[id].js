@@ -1,4 +1,4 @@
-let url = "http://localhost:8001/todos";
+let url = `${process.env.API_URL.replace(/\/+$/, '')}/todos`;
 
 export default function handler(req, res) {
   const { id } = req.query;

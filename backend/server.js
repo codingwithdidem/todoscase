@@ -1,4 +1,8 @@
-require("dotenv").config();
+const fs = require('fs');
+if(fs.existsSync('.env')) {
+  console.log("Load environments from .env file")
+  require('dotenv').config();
+}
 
 const express = require("express");
 const cors = require("cors");
@@ -7,6 +11,7 @@ const mongoose = require("mongoose");
 const app = express();
 
 async function main() {
+  console.log(`Connect to ${process.env.MONGODB_URI}`)
   await mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,

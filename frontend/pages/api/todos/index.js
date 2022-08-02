@@ -1,4 +1,4 @@
-const url = "http://localhost:8001/todos";
+const url = `${process.env.API_URL.replace(/\/+$/, '')}/todos`;
 
 export default function handler(req, res) {
   switch (req.method) {
